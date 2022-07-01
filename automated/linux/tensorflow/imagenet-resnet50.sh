@@ -6,8 +6,8 @@ OUTPUT="$(pwd)/output"
 source ./tensorflow-utils.sh
 
 HOME_DIR='/home/debiand05'
+TEAT_PROGRAM="inference"
 TEST_GIT_URL="https://github.com/mlcommons/inference.git"
-TEST_PROGRAM="inference"
 TEST_DIR="${HOME_DIR}/src/${TEST_PROGRAM}"
 TEST_PROG_VERSION="215c057fc6690a47f3f66c72c076a8f73d66cb12"
 MNT_DIR='/mnt'
@@ -50,30 +50,7 @@ source bin/activate
 popd || exit
 
 if [[ "${SKIP_INSTALL}" = *alse ]]; then
-    pushd "${HOME_DIR}"/tf_venv || exit
-    python -m pip install --upgrade pip wheel
-    python -m pip install h5py
-    python -m pip install cython
-    python -m pip install google protobuf==3.20.1
-    python -m pip install --no-binary pycocotools pycocotools
-    python -m pip install absl-py pillow
-    python -m pip install --extra-index-url https://snapshots.linaro.org/ldcg/python-cache/ numpy==1.19.5
-    python -m pip install --extra-index-url https://snapshots.linaro.org/ldcg/python-cache/ matplotlib
-    python -m pip install ck
-    ck pull repo:ck-env
-    python -m pip install scikit-build
-    python -m pip install --extra-index-url https://snapshots.linaro.org/ldcg/python-cache/ tensorflow-io-gcs-filesystem==0.24.0 h5py==3.1.0
-    python -m pip install tensorflow-aarch64==2.7.0
-    popd || exit
-    mkdir "${HOME_DIR}"/src
-    echo "${TEST_PROG_VERSION}"
-    echo "${TEST_DIR}"
-    get_test_program "${TEST_GIT_URL}" "${TEST_DIR}" "${TEST_PROG_VERSION}" "${TEST_PROGRAM}"
-    ls -l
-    git checkout 215c057fc6690a47f3f66c72c076a8f73d66cb12
-    ls "${HOME_DIR}"/src/"${TEST_PROGRAM}" || exit
-    python setup.py develop
-    popd || exit
+    tensorflow_pip_install
     if [[ "${MNT_EXISTS}" = *alse ]]; then
         get_dataset_imagenet_resnet50
     fi

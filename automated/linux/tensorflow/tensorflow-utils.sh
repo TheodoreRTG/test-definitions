@@ -22,8 +22,7 @@ tensorflow_pip_install(){
     popd || exit
     mkdir "${HOME_DIR}"/src
     get_test_program "${TEST_GIT_URL}" "${TEST_DIR}" "${TEST_PROG_VERSION}" "${TEST_PROGRAM}"
-    ls -l
-    ls "${HOME_DIR}"/src/"${TEST_PROGRAM}" || exit
+    pushd loadgen || exit
     python setup.py develop
     popd || exit
 }
