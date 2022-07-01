@@ -7,9 +7,9 @@ source ./tensorflow-utils.sh
 
 HOME_DIR='/home/debiand05'
 TEST_GIT_URL="https://github.com/mlcommons/inference.git"
+TEST_PROGRAM="inference"
 TEST_DIR="${HOME_DIR}/src/${TEST_PROGRAM}"
 TEST_PROG_VERSION="215c057fc6690a47f3f66c72c076a8f73d66cb12"
-TEST_PROGRAM="inference"
 MNT_DIR='/mnt'
 MNT_EXISTS=true
 
@@ -67,7 +67,7 @@ if [[ "${SKIP_INSTALL}" = *alse ]]; then
     popd || exit
     mkdir "${HOME_DIR}"/src
     echo "${TEST_PROG_VERSION}"
-    echo -d "${TEST_DIR}"
+    echo "${TEST_DIR}"
     get_test_program "${TEST_GIT_URL}" "${TEST_DIR}" "${TEST_PROG_VERSION}" "${TEST_PROGRAM}"
     ls -l
     git checkout 215c057fc6690a47f3f66c72c076a8f73d66cb12
