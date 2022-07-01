@@ -66,6 +66,8 @@ if [[ "${SKIP_INSTALL}" = *alse ]]; then
     python -m pip install tensorflow-aarch64==2.7.0
     popd || exit
     mkdir "${HOME_DIR}"/src
+    echo "${TEST_PROG_VERSION}"
+    echo -d "${TEST_DIR}"
     get_test_program "${TEST_GIT_URL}" "${TEST_DIR}" "${TEST_PROG_VERSION}" "${TEST_PROGRAM}"
     ls -l
     git checkout 215c057fc6690a47f3f66c72c076a8f73d66cb12
