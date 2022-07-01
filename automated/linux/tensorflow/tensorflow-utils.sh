@@ -23,7 +23,7 @@ tensorflow_pip_install(){
     mkdir "${HOME_DIR}"/src
     get_test_program "${TEST_GIT_URL}" "${TEST_DIR}" "${TEST_PROG_VERSION}" "${TEST_PROGRAM}"
     pushd loadgen || exit
-    python setup.py develop
+    CFLAGS="-std=c++14 -Wp, -U_GLIBCXX_ASSERTIONS" python setup.py develop
     popd || exit
 }
 #Setup for the ssd_mobilenet dataset if the dataset does not already exist on device
