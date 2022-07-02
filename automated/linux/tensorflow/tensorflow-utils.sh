@@ -22,7 +22,8 @@ tensorflow_pip_install(){
     popd || exit
     mkdir "${HOME_DIR}"/src
     get_test_program "${TEST_GIT_URL}" "${TEST_DIR}" "${TEST_PROG_VERSION}" "${TEST_PROGRAM}"
-    git checkout 215c057fc6690a47f3f66c72c076a8f73d66cb12
+    git checkout r 1.1
+    git cherry-pick -n 215c057fc6690a47f3f66c72c076a8f73d66cb12
     pushd loadgen || exit
     CFLAGS="-std=c++14 -Wp, -U_GLIBCXX_ASSERTIONS" python setup.py develop
     popd || exit
