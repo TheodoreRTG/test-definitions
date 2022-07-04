@@ -59,10 +59,12 @@ fi
 pushd "${HOME_DIR}"/src/inference/vision/classification_and_detection/ || exit
 python setup.py develop
 
-mkdir "${MNT_DIR}"/datasets
-mount -t nfs 10.40.96.10:/mnt/nvme "${MNT_DIR}"
-export DATA_DIR="${MNT_DIR}"/data/CK-TOOLS/dataset-imagenet-ilsvrc2012-val-min
-export MODEL_DIR="${MNT_DIR}"/datasets/data/models
+if [[ "${MNT_EXISTS}" = *rue ]]; then
+    mkdir "${MNT_DIR}"/datasets
+    mount -t nfs 10.40.96.10:/mnt/nvme "${MNT_DIR}"/datasets
+    export DATA_DIR="${MNT_DIR}"/data/CK-TOOLS/dataset-imagenet-ilsvrc2012-val-min
+    export MODEL_DIR="${MNT_DIR}"/datasets/data/models
+fi
 
 ./run_local.sh tf resnet50
 popd || exit
