@@ -62,7 +62,7 @@ python setup.py develop
 if [[ "${MNT_EXISTS}" = *rue ]]; then
     mkdir "${MNT_DIR}"/datasets
     mount -t nfs 10.40.96.10:/mnt/nvme "${MNT_DIR}"/datasets
-    export DATA_DIR="${MNT_DIR}"/data/CK-TOOLS/dataset-imagenet-ilsvrc2012-val-min
+    export DATA_DIR="${MNT_DIR}"/datasets/data/CK-TOOLS/dataset-imagenet-ilsvrc2012-val-min
     export MODEL_DIR="${MNT_DIR}"/datasets/data/models
 fi
 
