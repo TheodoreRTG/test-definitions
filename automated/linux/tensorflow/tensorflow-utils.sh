@@ -24,8 +24,9 @@ tensorflow_pip_install(){
     get_test_program "${TEST_GIT_URL}" "${TEST_DIR}" "${TEST_PROG_VERSION}" "${TEST_PROGRAM}"
     git checkout r1.1
     git cherry-pick -n 215c057fc6690a47f3f66c72c076a8f73d66cb12
+    git submodule update --init --recursive
     pushd loadgen || exit
-    CFLAGS="-std=c++14 -Wp, -U_GLIBCXX_ASSERTIONS" python setup.py develop
+    python setup.py develop
     popd || exit
 }
 #Setup for the ssd_mobilenet dataset if the dataset does not already exist on device
